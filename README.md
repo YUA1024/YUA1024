@@ -13,7 +13,7 @@ Object Detection Project On Streamlit Apps/Streamlit平台部署App
 Details of Our Project/项目基本信息
 -------
 
-The project is a final work for Applied Computer Vision courses. We try to detect some objetcs and show them in some visible ways. We've already deployed this project in Streamlit Apps. If you are interested in our project.   
+The project is a final work for Applied Computer Vision courses. We try to detect some objetcs and show them in some visible ways. We've already deployed this project in Streamlit Apps.   
   
 How to run this project
 -------
