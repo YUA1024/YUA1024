@@ -15,6 +15,8 @@ Details of Our Project/项目基本信息
 
 The project is a final work for Applied Computer Vision courses. We try to detect some objetcs and show them in some visible ways. We've already deployed this project in Streamlit Apps.   
   
+<div align=center><img width="800" height="600" src="https://github.com/YUA1024/YUA1024/blob/master/clouds/020A8C59-A6A1-427F-B932-478AF65D70F6.JPG"/></div>
+  
 How to run this project
 -------
 ```
