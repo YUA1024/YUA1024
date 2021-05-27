@@ -2,6 +2,7 @@ Object Detection Project On Streamlit Apps/Streamlit平台部署App
 ====
 
 ![maven](https://img.shields.io/badge/Python-3.6.5--3.9.0-green)
+![maven](https://img.shields.io/badge/streamlit-0.82.0-yellow)
 ![maven](https://img.shields.io/badge/tensorflow-1.15.0-orange)
 ![maven](https://img.shields.io/badge/numpy-1.18.4-blue)
 ![maven](https://img.shields.io/badge/pandas-1.0.1-lightgrey)
