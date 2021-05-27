@@ -1,4 +1,4 @@
-Object Detection Work On Streamlit Apps/Streamlit平台部署App
+Object Detection Project On Streamlit Apps/Streamlit平台部署App
 ====
 
 此项目由赵志远、李亦章、汪一凡共同完成  
