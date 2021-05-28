@@ -9,7 +9,7 @@ import pandas as pd
 #from streamlit_ace import st_ace
 from PIL import Image
 import cv2
-import paddlehub as hub
+#import paddlehub as hub
 
 # -- Set page config
 apptitle = 'Cloud Classification'
