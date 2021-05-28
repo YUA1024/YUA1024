@@ -9,12 +9,15 @@ import pandas as pd
 #from streamlit_ace import st_ace
 from PIL import Image
 
+@st.cache
 st.title('Cloud detection')
+st.write("Choose the image you want to detect!")
 uploaded_file = st.sidebar.file_uploader("Choose a file")
 if uploaded_file is not None:
     im = Image.open(uploaded_file)
 else:
     im = Image.open(r"./clouds/1111.jfif")
-#scaler = int(im.height / 2)
+    
 st.sidebar.image(im, caption="Input Image", width=256)
-#image = F.pil_to_tensor(im).float() / 255
+st.image(im, caption='the cloud you choose')
+
