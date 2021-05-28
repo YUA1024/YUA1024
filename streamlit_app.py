@@ -9,7 +9,6 @@ import pandas as pd
 #from streamlit_ace import st_ace
 from PIL import Image
 
-@st.cache
 st.title('Cloud detection')
 st.write("Choose the image you want to detect!")
 uploaded_file = st.sidebar.file_uploader("Choose a file")
