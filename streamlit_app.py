@@ -9,7 +9,12 @@ import pandas as pd
 #from streamlit_ace import st_ace
 from PIL import Image
 
-st.title('Cloud detection :cloud:')
+# -- Set page config
+apptitle = 'Cloud Classification'
+st.set_page_config(page_title=apptitle, page_icon=":cloud:")
+
+# Title the app
+st.title('Cloud Classification :cloud:')
 
 option = st.sidebar.selectbox(
     'Services you are interested',
@@ -24,7 +29,10 @@ if option == 'Introduction about this app':
     The clouds it can identify include cirrus, cumulus, cumulonimbus
     
     :point_left:Please select **Choose the image you want to detect** in the sidebar to start.
+    
+    You can see more about this app in the [github](https://github.com/YUA1024/YUA1024).
     '''
+    
 
 else:
     st.subheader('Application')
