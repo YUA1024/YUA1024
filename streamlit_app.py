@@ -10,22 +10,33 @@ import pandas as pd
 from PIL import Image
 
 st.title('Cloud detection :cloud:')
-'''
-Our cloud detection application can identify the type of cloud you upload and display it.
 
-:point_left:Please select **Choose the image you want to detect** in the sidebar to start.
+option = st.sidebar.selectbox(
+    'Services you are interested',
+    ('Introduction about this app','Choose the image you want to detect'))
 
-You can display the image in full size by hovering it and clicking the double arrow.
-'''
+if option == 'Introduction about this app':
+    st.subheader('Introduction')
+    '''
+    
+    Our cloud detection application can identify the type of cloud you upload and display it.
+    
+    The clouds it can identify include cirrus, cumulus, cumulonimbus
+    
+    :point_left:Please select **Choose the image you want to detect** in the sidebar to start.
+    '''
 
-# sidebar
-uploaded_file = st.sidebar.file_uploader("Choose a image you want to detect")
-if uploaded_file is not None:
-    im = Image.open(uploaded_file)
 else:
-    im = Image.open(r"./clouds/1111.jfif")
-st.sidebar.image(im, caption="Input Image", width=256)
-st.sidebar.write("")
-
-st.image(im, caption='the cloud you choose', width=512)
+    st.subheader('Application')
+    '''
+    You can display the image in full size by hovering it and clicking the double arrow.
+    '''
+    # sidebar
+    uploaded_file = st.sidebar.file_uploader("Choose a image you want to detect")
+    if uploaded_file is not None:
+        im = Image.open(uploaded_file)
+    else:
+        im = Image.open(r"./clouds/1111.jfif")
+    st.sidebar.image(im, caption="Input Image", width=256)
+    st.image(im, caption='the cloud you choose', width=512)
 
