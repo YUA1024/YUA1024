@@ -10,13 +10,16 @@ import pandas as pd
 from PIL import Image
 
 st.title('Cloud detection')
-st.write("Choose the image you want to detect!")
+st.write("You can display the image in full size by hovering it and clicking the double arrow")
+st.write(":point_left:Please select **Choose the image you want to detect** in the sidebar to start.")
+# sidebar
 uploaded_file = st.sidebar.file_uploader("Choose a file")
 if uploaded_file is not None:
     im = Image.open(uploaded_file)
 else:
     im = Image.open(r"./clouds/1111.jfif")
-    
 st.sidebar.image(im, caption="Input Image", width=256)
-st.image(im, caption='the cloud you choose')
+st.sidebar.write("")
+
+st.image(im, caption='the cloud you choose', use_column_width=True)
 
