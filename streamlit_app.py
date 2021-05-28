@@ -10,6 +10,7 @@ import pandas as pd
 from PIL import Image
 import cv2
 import tarfile
+import sys
 #import paddlehub as hub
 
 # -- Set page config
