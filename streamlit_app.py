@@ -11,11 +11,11 @@ from PIL import Image
 
 st.title('Cloud detection :cloud:')
 '''
-Our cloud detection application can identify the type of cloud you upload and display it
+Our cloud detection application can identify the type of cloud you upload and display it.
 
-:point_left:Please select **Choose the image you want to detect** in the sidebar to start
+:point_left:Please select **Choose the image you want to detect** in the sidebar to start.
 
-You can display the image in full size by hovering it and clicking the double arrow
+You can display the image in full size by hovering it and clicking the double arrow.
 '''
 
 # sidebar
@@ -27,5 +27,5 @@ else:
 st.sidebar.image(im, caption="Input Image", width=256)
 st.sidebar.write("")
 
-st.image(im, caption='the cloud you choose', width=1024)
+st.image(im, caption='the cloud you choose', width=512)
 
