@@ -9,6 +9,7 @@ import pandas as pd
 #from streamlit_ace import st_ace
 from PIL import Image
 
+st.title('Cloud detection')
 uploaded_file = st.sidebar.file_uploader("Choose a file")
 if uploaded_file is not None:
     im = Image.open(uploaded_file)
