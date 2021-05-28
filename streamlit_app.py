@@ -15,6 +15,6 @@ if uploaded_file is not None:
     im = Image.open(uploaded_file)
 else:
     im = Image.open(r"./clouds/1111.jfif")
-scaler = int(im.height / 2)
-st.sidebar.image(im, caption="Input Image", width=200)
+#scaler = int(im.height / 2)
+st.sidebar.image(im, caption="Input Image", width=256)
 #image = F.pil_to_tensor(im).float() / 255
