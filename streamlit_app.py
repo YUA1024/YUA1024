@@ -5,8 +5,8 @@ from PIL import Image
 import cv2
 
 # -- Set page config
-apptitle = 'Cloud Classification'
-st.set_page_config(page_title=apptitle, page_icon=":cloud:")
+apptitle = 'Object Detection'
+st.set_page_config(page_title=apptitle, page_icon=":face_with_monocle:")
 
 
 def yolo_v3(image, confidence_threshold, overlap_threshold):
@@ -80,7 +80,7 @@ LABEL_COLORS = {
     }
 
 # Title the app
-st.title('Cloud Classification :cloud:')
+st.title('Object Detection :face_with_monocle:')
 
 option = st.sidebar.selectbox(
     'Services you are interested',
@@ -89,10 +89,9 @@ option = st.sidebar.selectbox(
 if option == 'Introduction about this app':
     st.subheader('Introduction')
     '''
+    Our Object Detection application can identify the image you upload and display it.
 
-    Our cloud detection application can identify the type of cloud you upload and display it.
-
-    The clouds it can identify include cirrus, cumulus, cumulonimbus
+    The objects it can identify include traffic light :traffic_light: , car :car: , pedestrian :walking: , biker :bicyclist: .
 
     :point_left:Please select **Choose the image you want to detect** in the sidebar to start.
 
@@ -120,5 +119,5 @@ else:
     else:
         im = Image.open(r"./clouds/1111.jfif")
     st.sidebar.image(im, caption="Input Image", width=256)
-    st.image(im, caption='the cloud you choose', width=800)
+    st.image(im, caption='the image you choose', width=512)
 
