@@ -2,6 +2,7 @@ import streamlit as st
 import numpy as np
 import pandas as pd
 from PIL import Image
+from streamlit_webrtc import webrtc_streamer
 import cv2
 
 # -- Set page config
@@ -120,4 +121,5 @@ else:
         im = Image.open(r"./clouds/1111.jfif")
     st.sidebar.image(im, caption="Input Image", width=256)
     st.image(im, caption='the image you choose', width=512)
+    webrtc_streamer(key="example")
 
