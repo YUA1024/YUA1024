@@ -2,6 +2,10 @@ import streamlit as st
 import numpy as np
 import pandas as pd
 from PIL import Image
+try:
+    from typing import Literal
+except ImportError:
+    from typing_extensions import Literal  # type: ignore
 from streamlit_webrtc import (
     AudioProcessorBase,
     ClientSettings,
