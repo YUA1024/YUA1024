@@ -2,7 +2,7 @@ import streamlit as st
 import numpy as np
 import pandas as pd
 from PIL import Image
-#from streamlit_webrtc import webrtc_streamer
+from streamlit_webrtc import webrtc_streamer
 import cv2
 
 # -- Set page config
