@@ -1,2 +1,3 @@
 paddlehub==2.0.0
 opencv-python-headless
+streamlit-webrtc~=0.11.0
