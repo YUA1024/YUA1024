@@ -121,5 +121,5 @@ else:
         im = Image.open(r"./clouds/1111.jfif")
     st.sidebar.image(im, caption="Input Image", width=256)
     st.image(im, caption='the image you choose', width=512)
-    webrtc_streamer(key="example")
+    #webrtc_streamer(key="example")
 
