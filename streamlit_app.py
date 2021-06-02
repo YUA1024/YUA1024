@@ -2,7 +2,13 @@ import streamlit as st
 import numpy as np
 import pandas as pd
 from PIL import Image
-from streamlit_webrtc import webrtc_streamer
+from streamlit_webrtc import (
+    AudioProcessorBase,
+    ClientSettings,
+    VideoProcessorBase,
+    WebRtcMode,
+    webrtc_streamer,
+)
 import cv2
 
 # -- Set page config
@@ -121,5 +127,13 @@ else:
         im = Image.open(r"./clouds/1111.jfif")
     st.sidebar.image(im, caption="Input Image", width=256)
     st.image(im, caption='the image you choose', width=512)
-    #webrtc_streamer(key="example")
+    
+    WEBRTC_CLIENT_SETTINGS = ClientSettings(
+    rtc_configuration={"iceServers": [{"urls": ["stun:stun.l.google.com:19302"]}]},
+    media_stream_constraints={"video": True, "audio": True},
+    )
+    webrtc_streamer(key="loopback",
+        mode=WebRtcMode.SENDRECV,
+        client_settings=WEBRTC_CLIENT_SETTINGS,
+        video_processor_factory=None,)
 
