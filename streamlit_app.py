@@ -2,17 +2,7 @@ import streamlit as st
 import numpy as np
 import pandas as pd
 from PIL import Image
-try:
-    from typing import Literal
-except ImportError:
-    from typing_extensions import Literal  # type: ignore
-from streamlit_webrtc import (
-    AudioProcessorBase,
-    ClientSettings,
-    VideoProcessorBase,
-    WebRtcMode,
-    webrtc_streamer,
-)
+from streamlit_webrtc import webrtc_streamer, VideoTransformerBase, ClientSettings, WebRtcMode
 import cv2
 
 # -- Set page config
@@ -132,12 +122,12 @@ else:
     st.sidebar.image(im, caption="Input Image", width=256)
     st.image(im, caption='the image you choose', width=512)
     
-    WEBRTC_CLIENT_SETTINGS = ClientSettings(
-    rtc_configuration={"iceServers": [{"urls": ["stun:stun.l.google.com:19302"]}]},
-    media_stream_constraints={"video": True, "audio": True},
-    )
-    webrtc_streamer(key="loopback",
+    ctx = webrtc_streamer(
+        client_settings=ClientSettings(
+            rtc_configuration={"iceServers": [{"urls": ["stun:stun.l.google.com:19302"]}]},
+            media_stream_constraints={"video": True, "audio": True},
+        ),
+        video_transformer_factory=None,
+        key="loopback",
         mode=WebRtcMode.SENDRECV,
-        client_settings=WEBRTC_CLIENT_SETTINGS,
-        video_processor_factory=None,)
-
+    )
