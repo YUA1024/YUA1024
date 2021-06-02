@@ -5,7 +5,7 @@ from PIL import Image
 from streamlit_webrtc import webrtc_streamer, VideoTransformerBase, ClientSettings, WebRtcMode
 import cv2
 
-# -- Set page config
+# Set page config
 apptitle = 'Object Detection'
 st.set_page_config(page_title=apptitle, page_icon=":face_with_monocle:")
 
@@ -83,6 +83,7 @@ LABEL_COLORS = {
 # Title the app
 st.title('Object Detection :face_with_monocle:')
 
+# define selectbox in the sidebar 
 option = st.sidebar.selectbox(
     'Services you are interested',
     ('Introduction about this app', 'Choose the image you want to detect'))
@@ -101,12 +102,14 @@ if option == 'Introduction about this app':
 
 
 else:
+    # set subheader
     st.subheader('Application')
     '''
     You can display the image in full size by hovering it and clicking the double arrow.
     '''
     # sidebar
     uploaded_file = st.sidebar.file_uploader("Choose a image you want to detect")
+    
     if uploaded_file is not None:
         im = Image.open(uploaded_file)
         im = np.array(im)
@@ -119,6 +122,7 @@ else:
         Image.fromarray(np.uint8(im))
     else:
         im = Image.open(r"./clouds/1111.jfif")
+    # show the image in both sidebar and main page
     st.sidebar.image(im, caption="Input Image", width=256)
     st.image(im, caption='the image you choose', width=512)
     
