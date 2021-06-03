@@ -1,10 +1,10 @@
 import os
 
-# Style Images Data
+# Images Data
 
-content_images_file = ['Pedestrians on the highway1.jpeg', 'test2.jpeg']
+content_images_file = ['Pedestrians on the highway1.jpeg', 'test2.jpeg', 'nopedstrain1.jpeg']
 
-content_images_name = ['Pedestrians on the highway', 'biker and trafficlight']
+content_images_name = ['Pedestrians on the highway', 'biker and traffic light', 'no pedstrain']
 
 images_path = 'image'
 
