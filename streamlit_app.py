@@ -116,19 +116,20 @@ else:
     '''
     # sidebar
     uploaded_file = st.sidebar.file_uploader("Choose a image you want to detect")
-    
     if uploaded_file is not None:
         im = Image.open(uploaded_file)
-        im = np.array(im)
-        im = cv2.cvtColor(im, cv2.COLOR_RGB2BGR)
-        yolo_boxes = yolo_v3(im, 0.8, 0.5)
-        for _, (x_min, y_min, x_max, y_max, label) in yolo_boxes.iterrows():
-            im = cv2.rectangle(im, (x_min, y_min), (x_max, y_max), LABEL_COLORS[label], 2)  # 框的左上角，框的右下角
-            im = cv2.putText(im, label, (x_min, y_min), cv2.FONT_HERSHEY_COMPLEX, 0.5, LABEL_COLORS[label],1)  # 框的左上角
-        im = cv2.cvtColor(im, cv2.COLOR_BGR2RGB)
-        Image.fromarray(np.uint8(im))
     else:
         im = Image.open(r"./clouds/test1.jpeg")
+    # identify the image    
+    im = np.array(im)
+    im = cv2.cvtColor(im, cv2.COLOR_RGB2BGR)
+    yolo_boxes = yolo_v3(im, 0.8, 0.5)
+    for _, (x_min, y_min, x_max, y_max, label) in yolo_boxes.iterrows():
+        im = cv2.rectangle(im, (x_min, y_min), (x_max, y_max), LABEL_COLORS[label], 2)  # 框的左上角，框的右下角
+        im = cv2.putText(im, label, (x_min, y_min), cv2.FONT_HERSHEY_COMPLEX, 0.5, LABEL_COLORS[label],1)  # 框的左上角
+    im = cv2.cvtColor(im, cv2.COLOR_BGR2RGB)
+    Image.fromarray(np.uint8(im))
+    
     # show the image in both sidebar and main page
     st.sidebar.image(im, caption="Input Image", width=256)
     st.image(im, caption='the image you choose', width=512)
