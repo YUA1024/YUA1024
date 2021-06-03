@@ -6,6 +6,7 @@ from email.mime.text import MIMEText
 from email.utils import formataddr
 from PIL import Image
 import cv2
+from data import *
 
 # Set page config
 apptitle = 'Object Detection'
@@ -138,7 +139,13 @@ else:
     You can display the image in full size by hovering it and clicking the double arrow.
     '''
     # sidebar
-    uploaded_file = st.sidebar.file_uploader("Choose a image you want to detect")
+    if st.sidebar.checkbox('Upload'):
+        uploaded_file = st.sidebar.file_uploader("Choose a image you want to detect")
+    else:
+        content_name = st.sidebar.selectbox("Choose the content images:", content_images_name)
+        uploaded_file = content_images_dict[content_name]
+     
+    
     if uploaded_file is not None:
         im = Image.open(uploaded_file)
     else:
