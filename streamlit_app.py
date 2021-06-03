@@ -144,14 +144,15 @@ else:
     else:
         content_name = st.sidebar.selectbox("Choose the content images:", content_images_name)
         uploaded_file = content_images_dict[content_name]
-     
     
     if uploaded_file is not None:
         im = Image.open(uploaded_file)
     else:
         st.warning("Upload an Image OR Untick the Upload Button)")
         st.stop()
-        
+    # show the image in sidebar
+    st.sidebar.image(im, caption="Input Image", width=256)
+    
     # identify the image    
     im = np.array(im)
     im = cv2.cvtColor(im, cv2.COLOR_RGB2BGR)
@@ -166,8 +167,7 @@ else:
     im = cv2.cvtColor(im, cv2.COLOR_BGR2RGB)
     Image.fromarray(np.uint8(im))
     
-    # show the image in both sidebar and main page
-    st.sidebar.image(im, caption="Input Image", width=256)
+    # show the image in main page
     # if there are pedestrains on the road, warning and send email
     if pedstrain_exist:
         ret=mail()
