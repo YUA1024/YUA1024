@@ -47,10 +47,13 @@ def yolo_v3(image, confidence_threshold, overlap_threshold):
         0: 'pedestrian',
         1: 'biker',
         2: 'car',
-        3: 'biker',
-        5: 'truck',
+        3: 'motorbike',
+        5: 'bus',
         7: 'truck',
-        9: 'trafficLight'
+        9: 'trafficLight',
+        11:'stop sign',
+        15:'cat',
+        16:'dog'
     }
     xmin, xmax, ymin, ymax, labels = [], [], [], [], []
     if len(indices) > 0:
@@ -78,6 +81,11 @@ LABEL_COLORS = {
         "truck": [0, 0, 255],
         "trafficLight": [255, 255, 0],
         "biker": [255, 0, 255],
+        "cat": [255, 255, 166],
+        "dog": [0, 255, 255],
+        "stop sign": [100,100,100],
+        "bus": [150,180,180]，
+        "motorbike": [0,180,180]
     }
 
 # Title the app
