@@ -2,6 +2,8 @@ import streamlit as st
 import numpy as np
 import pandas as pd
 import smtplib
+from email.mime.text import MIMEText
+from email.header import Header
 from PIL import Image
 import cv2
 
