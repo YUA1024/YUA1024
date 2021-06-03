@@ -157,9 +157,9 @@ else:
         try:
             smtpObj = smtplib.SMTP('localhost')
             smtpObj.sendmail(sender, receivers, message.as_string())
-            print "Email sent successfully"
+            print("Email sent successfully")
         except smtplib.SMTPException:
-            print "Error: Unable to send mail"
+            print("Error: Unable to send mail")
         
     st.image(im, caption='the image you choose', width=512)
     
