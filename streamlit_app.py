@@ -149,7 +149,8 @@ else:
     if uploaded_file is not None:
         im = Image.open(uploaded_file)
     else:
-        im = Image.open(r"./image/Pedestrians on the highway1.jpeg")
+        st.warning("Upload an Image OR Untick the Upload Button)")
+        st.stop()
         
     # identify the image    
     im = np.array(im)
