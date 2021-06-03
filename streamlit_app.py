@@ -140,9 +140,22 @@ else:
     
     # show the image in both sidebar and main page
     st.sidebar.image(im, caption="Input Image", width=256)
-    # if there are pedestrains on the road, warnning
+    # if there are pedestrains on the road, warning and send email
     if pedstrain_exist:
         st.error('Exists Pedestrains!!!')
+        sender = 'doublefish mmm@gmail.com'
+        receivers = ['1005943382@qq.com']  # Receive mail
+ 
+        # Three parameters: the first is text content, the second is text format, and the third is UTF-8 encoding
+        message = MIMEText('There are pedestrians running the red light!!!', 'plain', 'utf-8')
+        message['From'] = Header("doublefish", 'utf-8')   # sender
+        message['To'] =  Header("user", 'utf-8')        # 接收者
+ 
+        subject = 'warning!'
+        message['Subject'] = Header(subject, 'utf-8')
+        
+ 
+        
     st.image(im, caption='the image you choose', width=512)
     
     
