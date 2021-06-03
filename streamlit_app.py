@@ -3,7 +3,7 @@ import numpy as np
 import pandas as pd
 import smtplib
 from email.mime.text import MIMEText
-from email.header import Header
+from email.utils import formataddr
 from PIL import Image
 import cv2
 
@@ -90,6 +90,26 @@ LABEL_COLORS = {
         "motorbike": [0,180,180]
     }
 
+my_sender='1005943382@qq.com'    # 发件人邮箱账号
+my_pass = 'tpgzthcmojtfbcfa'              # 发件人邮箱密码(当时申请smtp给的口令)
+my_user='doublefishmmm@gmail.com'      # 收件人邮箱账号，我这边发送给自己
+def mail():
+    ret=True
+    try:
+        msg=MIMEText('There are pedestrians running the red light!!!','plain','utf-8')
+        msg['From']=formataddr(["doublefish",my_sender])  # 括号里的对应发件人邮箱昵称、发件人邮箱账号
+        msg['To']=formataddr(["user",my_user])              # 括号里的对应收件人邮箱昵称、收件人邮箱账号
+        msg['Subject']="warning!"                # 邮件的主题，也可以说是标题
+
+        server=smtplib.SMTP_SSL("smtp.qq.com", 465)  # 发件人邮箱中的SMTP服务器，端口是465
+        server.login(my_sender, my_pass)  # 括号中对应的是发件人邮箱账号、邮箱密码
+        server.sendmail(my_sender,[my_user,],msg.as_string())  # 括号中对应的是发件人邮箱账号、收件人邮箱账号、发送邮件
+        server.quit()# 关闭连接
+    except Exception:# 如果 try 中的语句没有执行，则会执行下面的 ret=False
+        ret=False
+    return ret
+
+
 # Title the app
 st.title('Object Detection :face_with_monocle:')
 
@@ -143,23 +163,11 @@ else:
     # if there are pedestrains on the road, warning and send email
     if pedstrain_exist:
         st.error('Exists Pedestrains!!!')
-        sender = 'doublefishmmm@gmail.com'
-        receivers = ['1005943382@qq.com']  # Receive mail
- 
-        # Three parameters: the first is text content, the second is text format, and the third is UTF-8 encoding
-        message = MIMEText('There are pedestrians running the red light!!!', 'plain', 'utf-8')
-        message['From'] = Header("doublefish", 'utf-8')   # sender
-        message['To'] =  Header("user", 'utf-8')        # 接收者
- 
-        subject = 'warning!'
-        message['Subject'] = Header(subject, 'utf-8')
-        
-        try:
-            smtpObj = smtplib.SMTP('localhost')
-            smtpObj.sendmail(sender, receivers, message.as_string())
-            print("Email sent successfully")
-        except smtplib.SMTPException:
-            print("Error: Unable to send mail")
+        ret=mail()
+        if ret:
+            print("邮件发送成功")
+        else:
+            print("邮件发送失败")
         
     st.image(im, caption='the image you choose', width=512)
     
