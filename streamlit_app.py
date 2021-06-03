@@ -131,13 +131,13 @@ else:
             pedstrain_exist = 1
         im = cv2.rectangle(im, (x_min, y_min), (x_max, y_max), LABEL_COLORS[label], 2)  # 框的左上角，框的右下角
         im = cv2.putText(im, label, (x_min, y_min), cv2.FONT_HERSHEY_COMPLEX, 0.5, LABEL_COLORS[label],1)  # 框的左上角
-    # if there are pedestrains on the road, warnning
-    if pedstrain_exist:
-        st.error('Exists Pedestrains!!!')
     
     im = cv2.cvtColor(im, cv2.COLOR_BGR2RGB)
     Image.fromarray(np.uint8(im))
     
+    # if there are pedestrains on the road, warnning
+    if pedstrain_exist:
+        st.error('Exists Pedestrains!!!')
     # show the image in both sidebar and main page
     st.sidebar.image(im, caption="Input Image", width=256)
     st.image(im, caption='the image you choose', width=512)
