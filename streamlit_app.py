@@ -119,7 +119,8 @@ else:
     if uploaded_file is not None:
         im = Image.open(uploaded_file)
     else:
-        im = Image.open(r"./clouds/test1.jpeg")
+        im = Image.open(r"./image/test1.jpeg")
+        
     # identify the image    
     im = np.array(im)
     im = cv2.cvtColor(im, cv2.COLOR_RGB2BGR)
