@@ -143,7 +143,7 @@ else:
     # if there are pedestrains on the road, warning and send email
     if pedstrain_exist:
         st.error('Exists Pedestrains!!!')
-        sender = 'doublefish mmm@gmail.com'
+        sender = 'doublefishmmm@gmail.com'
         receivers = ['1005943382@qq.com']  # Receive mail
  
         # Three parameters: the first is text content, the second is text format, and the third is UTF-8 encoding
@@ -154,7 +154,12 @@ else:
         subject = 'warning!'
         message['Subject'] = Header(subject, 'utf-8')
         
- 
+        try:
+            smtpObj = smtplib.SMTP('localhost')
+            smtpObj.sendmail(sender, receivers, message.as_string())
+            print "Email sent successfully"
+        except smtplib.SMTPException:
+            print "Error: Unable to send mail"
         
     st.image(im, caption='the image you choose', width=512)
     
