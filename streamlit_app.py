@@ -137,8 +137,9 @@ else:
     
     # show the image in both sidebar and main page
     st.sidebar.image(im, caption="Input Image", width=256)
-    st.image(im, caption='the image you choose', width=512)
     # if there are pedestrains on the road, warnning
     if pedstrain_exist:
         st.error('Exists Pedestrains!!!')
+    st.image(im, caption='the image you choose', width=512)
+    
     
