@@ -128,7 +128,7 @@ else:
         im = cv2.cvtColor(im, cv2.COLOR_BGR2RGB)
         Image.fromarray(np.uint8(im))
     else:
-        im = Image.open(r"./clouds/1111.jfif")
+        im = Image.open(r"./clouds/test1.jpeg")
     # show the image in both sidebar and main page
     st.sidebar.image(im, caption="Input Image", width=256)
     st.image(im, caption='the image you choose', width=512)
