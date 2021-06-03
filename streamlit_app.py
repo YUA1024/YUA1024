@@ -119,7 +119,7 @@ else:
     if uploaded_file is not None:
         im = Image.open(uploaded_file)
     else:
-        im = Image.open(r"./image/test1.jpeg")
+        im = Image.open(r"./image/Pedestrians on the highway1.jpeg")
         
     # identify the image    
     im = np.array(im)
