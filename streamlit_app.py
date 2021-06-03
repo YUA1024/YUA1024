@@ -135,10 +135,10 @@ else:
     im = cv2.cvtColor(im, cv2.COLOR_BGR2RGB)
     Image.fromarray(np.uint8(im))
     
-    # if there are pedestrains on the road, warnning
-    if pedstrain_exist:
-        st.error('Exists Pedestrains!!!')
     # show the image in both sidebar and main page
     st.sidebar.image(im, caption="Input Image", width=256)
     st.image(im, caption='the image you choose', width=512)
+    # if there are pedestrains on the road, warnning
+    if pedstrain_exist:
+        st.error('Exists Pedestrains!!!')
     
