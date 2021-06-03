@@ -21,6 +21,7 @@ Application
 1. Detect pedestrians on the highway and give warning. 
 <div align=center><img width="600" height="450" src="https://github.com/YUA1024/YUA1024/blob/master/image/result1.png"/></div>
 2. Identify vehicles and pedestrians which are running red lights and save their pictures.
+<div align=center><img width="600" height="450" src="https://github.com/YUA1024/YUA1024/blob/master/image/result2.png"/></div>
 
 Usage
 -------
