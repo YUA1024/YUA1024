@@ -152,11 +152,11 @@ else:
 
             with col2:
               st.header("A dog")
-              st.image("image/jalwlaker.png", use_column_width=True)
+              st.image("image/pedestrian_location.png", use_column_width=True)
 
             with col3:
               st.header("An owl")
-              st.image("https://static.streamlit.io/examples/owl.jpg", use_column_width=True)
+              st.image("image/jalwlaker.png", use_column_width=True)
             
 
 
