@@ -186,19 +186,19 @@ else:
         if pedstrain_exist == 0 and label is "pedestrian":
             pedstrain_exist = 1
         if label is "trafficLight":
-            traffic_light_image = image[abs(y_min):y_max, abs(x_min):x_max, :]
+            traffic_light_image = im[abs(y_min):y_max, abs(x_min):x_max, :]
             traffic_color = estimate_label(traffic_light_image)
 
             if traffic_color is 'Red_traffic_Light':
-                image = cv2.rectangle(image, (x_min, y_min), (x_max, y_max), (0,0,255), 2)  # 框的左上角，框的右下角
-                image = cv2.putText(image, traffic_color, (x_min, y_min), cv2.FONT_HERSHEY_COMPLEX, 0.5, (0,0,255),1)  # 框的左上角
+                im = cv2.rectangle(im, (x_min, y_min), (x_max, y_max), (0,0,255), 2)  # 框的左上角，框的右下角
+                im = cv2.putText(im, traffic_color, (x_min, y_min), cv2.FONT_HERSHEY_COMPLEX, 0.5, (0,0,255),1)  # 框的左上角
                 # cv2.imwrite('traffic_light_image.png', traffic_light_image)
             if traffic_color is 'Green_traffic_Light':
-                image = cv2.rectangle(image, (x_min, y_min), (x_max, y_max), (0,255,0), 2)  # 框的左上角，框的右下角
-                image = cv2.putText(image, traffic_color, (x_min, y_min), cv2.FONT_HERSHEY_COMPLEX, 0.5, (0,255,0),1)  # 框的左上角
+                im = cv2.rectangle(im, (x_min, y_min), (x_max, y_max), (0,255,0), 2)  # 框的左上角，框的右下角
+                im = cv2.putText(im, traffic_color, (x_min, y_min), cv2.FONT_HERSHEY_COMPLEX, 0.5, (0,255,0),1)  # 框的左上角
             else:
-                image = cv2.rectangle(image, (x_min, y_min), (x_max, y_max), (255,255,0), 2)  # 框的左上角，框的右下角
-                image = cv2.putText(image, traffic_color, (x_min, y_min), cv2.FONT_HERSHEY_COMPLEX, 0.5, (255,255,0),1)  # 框的左上角
+                im = cv2.rectangle(im, (x_min, y_min), (x_max, y_max), (255,255,0), 2)  # 框的左上角，框的右下角
+                im = cv2.putText(im, traffic_color, (x_min, y_min), cv2.FONT_HERSHEY_COMPLEX, 0.5, (255,255,0),1)  # 框的左上角
             continue
         im = cv2.rectangle(im, (x_min, y_min), (x_max, y_max), LABEL_COLORS[label], 2)  # 框的左上角，框的右下角
         im = cv2.putText(im, label, (x_min, y_min), cv2.FONT_HERSHEY_COMPLEX, 0.5, LABEL_COLORS[label],1)  # 框的左上角
