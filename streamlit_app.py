@@ -142,13 +142,13 @@ else:
     if st.sidebar.checkbox('Upload'):
         uploaded_file = st.sidebar.file_uploader("Choose a image you want to detect")
     else:
-        content_name = st.sidebar.selectbox("Choose the content images:", content_images_name)
+        content_name = st.sidebar.checkbox("Choose the content images:", content_images_name)
         uploaded_file = content_images_dict[content_name]
         if st.sidebar.selectbox('jaywalkers'):
             col1, col2, col3 = st.beta_columns(3)
             with col1:
-              st.header("A cat")
-              st.image("https://static.streamlit.io/examples/cat.jpg", use_column_width=True)
+              st.header("jalwalker")
+              st.image("image/jalwlaker.png", use_column_width=True)
 
             with col2:
               st.header("A dog")
