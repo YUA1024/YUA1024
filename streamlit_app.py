@@ -148,7 +148,7 @@ else:
             col1, col2, col3 = st.beta_columns(3)
             with col1:
               st.header("Lights_Color")
-              st.image("image/traffic_light_image.png", use_column_width=True, width=64)
+              st.image("image/traffic_light_image.png", use_column_width=True, width=32)
 
             with col2:
               st.header("A dog")
