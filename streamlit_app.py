@@ -147,8 +147,8 @@ else:
         if st.sidebar.checkbox('jaywalkers'):
             col1, col2, col3 = st.beta_columns(3)
             with col1:
-              st.header("jalwalker")
-              st.image("image/traffic_light_image.png", use_column_width=True)
+              st.header("Lights_Color")
+              st.image("image/traffic_light_image.png", use_column_width=True, width=64)
 
             with col2:
               st.header("A dog")
