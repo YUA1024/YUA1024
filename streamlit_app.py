@@ -147,11 +147,11 @@ else:
         if st.sidebar.checkbox('jaywalkers'):
             st.subheader('The whole process of detecting jaywalkers')
             '''
-            First, get the colors of the traffic lights.
+            First, get the colors of the traffic lights.(Lights_Color)
 
-            Second, get the middle position of the foot of the pedestrian
+            Second, get the middle position of the foot of the pedestrian(Foot_Location)
             
-            Third, circle the range of the zebra crossing to see how many pedestrians are in the middle of their feet within this range, and finally get the result
+            Third, circle the range of the zebra crossing to see how many pedestrians are in the middle of their feet within this range, and finally get the result(Calculate)
             '''
             col1, col2, col3 = st.beta_columns(3)
             with col1:
@@ -159,11 +159,11 @@ else:
               st.image("image/red_traffic_light.png", use_column_width=True)
 
             with col2:
-              st.header("A dog")
+              st.header("Foot_Location")
               st.image("image/pedestrian_location.png", use_column_width=True)
 
             with col3:
-              st.header("An owl")
+              st.header("Calculate")
               st.image("image/whole_picture.png", use_column_width=True)
             
 
