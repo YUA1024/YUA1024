@@ -145,10 +145,18 @@ else:
         content_name = st.sidebar.selectbox("Choose the content images:", content_images_name)
         uploaded_file = content_images_dict[content_name]
         if st.sidebar.checkbox('jaywalkers'):
+            st.subheader('The whole process of detecting jaywalkers')
+            '''
+            First, get the colors of the traffic lights.
+
+            Second, get the middle position of the foot of the pedestrian
+            
+            Third, circle the range of the zebra crossing to see how many pedestrians are in the middle of their feet within this range, and finally get the result
+            '''
             col1, col2, col3 = st.beta_columns(3)
             with col1:
               st.header("Lights_Color")
-              st.image("image/traffic_light_image.png", use_column_width=True, width=32)
+              st.image("image/red_traffic_light.png", use_column_width=True)
 
             with col2:
               st.header("A dog")
