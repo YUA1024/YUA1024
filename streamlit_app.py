@@ -200,9 +200,9 @@ else:
             else:
                 im = cv2.rectangle(im, (x_min, y_min), (x_max, y_max), (255,255,0), 2)  # 框的左上角，框的右下角
                 im = cv2.putText(im, traffic_color, (x_min, y_min), cv2.FONT_HERSHEY_COMPLEX, 0.5, (255,255,0),1)  # 框的左上角
-            continue
-        im = cv2.rectangle(im, (x_min, y_min), (x_max, y_max), LABEL_COLORS[label], 2)  # 框的左上角，框的右下角
-        im = cv2.putText(im, label, (x_min, y_min), cv2.FONT_HERSHEY_COMPLEX, 0.5, LABEL_COLORS[label],1)  # 框的左上角
+        if label is not "trafficLight":
+            im = cv2.rectangle(im, (x_min, y_min), (x_max, y_max), LABEL_COLORS[label], 2)  # 框的左上角，框的右下角
+            im = cv2.putText(im, label, (x_min, y_min), cv2.FONT_HERSHEY_COMPLEX, 0.5, LABEL_COLORS[label],1)  # 框的左上角
     
     im = cv2.cvtColor(im, cv2.COLOR_BGR2RGB)
     Image.fromarray(np.uint8(im))
