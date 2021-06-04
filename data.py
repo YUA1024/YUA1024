@@ -2,9 +2,9 @@ import os
 
 # Images Data
 
-content_images_file = ['Pedestrians on the highway1.jpeg', 'test2.jpeg', 'nopedstrain1.jpeg']
+content_images_file = ['Pedestrians on the highway1.jpeg', 'test2.jpeg', 'nopedstrain1.jpeg', '']
 
-content_images_name = ['Pedestrians on the highway', 'biker and traffic light', 'no pedstrain']
+content_images_name = ['Pedestrians on the highway', 'biker and traffic light', 'no pedstrain', 'jaywalkers']
 
 images_path = 'image'
 
