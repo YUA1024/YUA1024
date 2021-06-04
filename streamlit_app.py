@@ -157,7 +157,7 @@ else:
             with col3:
               st.header("An owl")
               st.image("https://static.streamlit.io/examples/owl.jpg", use_column_width=True)
-            break
+            
 
 
     
