@@ -144,7 +144,7 @@ else:
     else:
         content_name = st.sidebar.selectbox("Choose the content images:", content_images_name)
         uploaded_file = content_images_dict[content_name]
-        if st.sidebar.checkbox('jaywalkers'):
+        if st.sidebar.selectbox('jaywalkers'):
             col1, col2, col3 = st.beta_columns(3)
             with col1:
               st.header("A cat")
