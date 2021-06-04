@@ -7,6 +7,7 @@ from email.utils import formataddr
 from PIL import Image
 import cv2
 from data import *
+from trafficlights import estimate_label
 
 # Set page config
 apptitle = 'Object Detection'
