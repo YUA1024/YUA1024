@@ -156,7 +156,7 @@ else:
 
             with col3:
               st.header("An owl")
-              st.image("image/jalwlaker.png", use_column_width=True)
+              st.image("image/whole_picture.png", use_column_width=True)
             
 
 
