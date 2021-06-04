@@ -149,9 +149,9 @@ else:
             '''
             First, get the colors of the traffic lights.(Lights_Color)
 
-            Second, get the middle position of the foot of the pedestrian(Foot_Location)
+            Second, get the middle position of the foot of the pedestrian.(Foot_Location)
             
-            Third, circle the range of the zebra crossing to see how many pedestrians are in the middle of their feet within this range, and finally get the result(Calculate)
+            Third, circle the range of the zebra crossing to see how many pedestrians are in the middle of their feet within this range, and finally get the result.(Calculate)
             '''
             col1, col2, col3 = st.beta_columns(3)
             with col1:
