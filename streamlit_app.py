@@ -171,7 +171,10 @@ else:
 
     
     if uploaded_file is not None:
-        im = Image.open(uploaded_file)
+        if st.sidebar.checkbox('jaywalkers'):
+            st.stop()
+        else:
+            im = Image.open(uploaded_file)
         
     else:
         st.warning("Upload an Image OR Untick the Upload Button)")
