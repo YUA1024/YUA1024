@@ -1,10 +1,15 @@
 import streamlit as st
 import numpy as np
 import pandas as pd
+import smtplib
+from email.mime.text import MIMEText
+from email.utils import formataddr
 from PIL import Image
 import cv2
+from data import *
+from trafficlights import estimate_label
 
-# -- Set page config
+# Set page config
 apptitle = 'Object Detection'
 st.set_page_config(page_title=apptitle, page_icon=":face_with_monocle:")
 
@@ -46,10 +51,13 @@ def yolo_v3(image, confidence_threshold, overlap_threshold):
         0: 'pedestrian',
         1: 'biker',
         2: 'car',
-        3: 'biker',
-        5: 'truck',
+        3: 'motorbike',
+        5: 'bus',
         7: 'truck',
-        9: 'trafficLight'
+        9: 'trafficLight',
+        11:'stop sign',
+        15:'cat',
+        16:'dog'
     }
     xmin, xmax, ymin, ymax, labels = [], [], [], [], []
     if len(indices) > 0:
@@ -77,11 +85,37 @@ LABEL_COLORS = {
         "truck": [0, 0, 255],
         "trafficLight": [255, 255, 0],
         "biker": [255, 0, 255],
+        "cat": [255, 255, 166],
+        "dog": [0, 255, 255],
+        "stop sign": [100,100,100],
+        "bus": [150,180,180],
+        "motorbike": [0,180,180]
     }
+
+my_sender='1005943382@qq.com'    # 发件人邮箱账号
+my_pass = 'tpgzthcmojtfbcfa'              # 发件人邮箱密码(当时申请smtp给的口令)
+my_user='doublefishmmm@gmail.com'      # 收件人邮箱账号，我这边发送给自己
+def mail():
+    ret=True
+    try:
+        msg=MIMEText('There are pedestrians running the red light!!!','plain','utf-8')
+        msg['From']=formataddr(["doublefish",my_sender])  # 括号里的对应发件人邮箱昵称、发件人邮箱账号
+        msg['To']=formataddr(["user",my_user])              # 括号里的对应收件人邮箱昵称、收件人邮箱账号
+        msg['Subject']="warning!"                # 邮件的主题，也可以说是标题
+
+        server=smtplib.SMTP_SSL("smtp.qq.com", 465)  # 发件人邮箱中的SMTP服务器，端口是465
+        server.login(my_sender, my_pass)  # 括号中对应的是发件人邮箱账号、邮箱密码
+        server.sendmail(my_sender,[my_user,],msg.as_string())  # 括号中对应的是发件人邮箱账号、收件人邮箱账号、发送邮件
+        server.quit()# 关闭连接
+    except Exception:# 如果 try 中的语句没有执行，则会执行下面的 ret=False
+        ret=False
+    return ret
+
 
 # Title the app
 st.title('Object Detection :face_with_monocle:')
 
+# define selectbox in the sidebar 
 option = st.sidebar.selectbox(
     'Services you are interested',
     ('Introduction about this app', 'Choose the image you want to detect','sign in'))
@@ -100,24 +134,90 @@ if option == 'Introduction about this app':
 
 
 else:
+    # set subheader
     st.subheader('Application')
     '''
     You can display the image in full size by hovering it and clicking the double arrow.
     '''
     # sidebar
-    uploaded_file = st.sidebar.file_uploader("Choose a image you want to detect")
+    if st.sidebar.checkbox('Upload'):
+        uploaded_file = st.sidebar.file_uploader("Choose a image you want to detect")
+    else:
+        content_name = st.sidebar.selectbox("Choose the content images:", content_images_name)
+        uploaded_file = content_images_dict[content_name]
+        if st.sidebar.checkbox('jaywalkers'):
+            st.subheader('The whole process of detecting jaywalkers')
+            '''
+            First, get the colors of the traffic lights.(Lights_Color)
+
+            Second, get the middle position of the foot of the pedestrian.(Foot_Location)
+            
+            Third, circle the range of the zebra crossing to see how many pedestrians are in the middle of their feet within this range, and finally get the result.(Calculate)
+            '''
+            col1, col2, col3 = st.beta_columns(3)
+            with col1:
+              st.header("Lights_Color")
+              st.image("image/red_traffic_light.png", use_column_width=True)
+
+            with col2:
+              st.header("Foot_Location")
+              st.image("image/pedestrian_location.png", use_column_width=True)
+
+            with col3:
+              st.header("Calculate")
+              st.image("image/whole_picture.png", use_column_width=True)
+            
+
+
+    
     if uploaded_file is not None:
         im = Image.open(uploaded_file)
-        im = np.array(im)
-        im = cv2.cvtColor(im, cv2.COLOR_RGB2BGR)
-        yolo_boxes = yolo_v3(im, 0.8, 0.5)
-        for _, (x_min, y_min, x_max, y_max, label) in yolo_boxes.iterrows():
-            im = cv2.rectangle(im, (x_min, y_min), (x_max, y_max), LABEL_COLORS[label], 2)  # 框的左上角，框的右下角
-            im = cv2.putText(im, label, (x_min, y_min), cv2.FONT_HERSHEY_COMPLEX, 0.5, LABEL_COLORS[label],1)  # 框的左上角
-        im = cv2.cvtColor(im, cv2.COLOR_BGR2RGB)
-        Image.fromarray(np.uint8(im))
     else:
-        im = Image.open(r"./clouds/1111.jfif")
+        st.warning("Upload an Image OR Untick the Upload Button)")
+        st.stop()
+    
+    # show the image in sidebar
     st.sidebar.image(im, caption="Input Image", width=256)
-    st.image(im, caption='the image you choose', width=512)
+    
+    # identify the image    
+    im = np.array(im)
+    im = cv2.cvtColor(im, cv2.COLOR_RGB2BGR)
+    yolo_boxes = yolo_v3(im, 0.8, 0.5)
+    pedstrain_exist = 0
+    for _, (x_min, y_min, x_max, y_max, label) in yolo_boxes.iterrows():
+        if pedstrain_exist == 0 and label is "pedestrian":
+            pedstrain_exist = 1
+        if label is "trafficLight":
+            traffic_light_image = im[abs(y_min):y_max, abs(x_min):x_max, :]
+            traffic_color = estimate_label(traffic_light_image)
 
+            if traffic_color is 'Red_traffic_Light':
+                im = cv2.rectangle(im, (x_min, y_min), (x_max, y_max), (0,0,255), 2)  # 框的左上角，框的右下角
+                im = cv2.putText(im, traffic_color, (x_min, y_min), cv2.FONT_HERSHEY_COMPLEX, 0.5, (0,0,255),1)  # 框的左上角
+                # cv2.imwrite('traffic_light_image.png', traffic_light_image)
+            elif traffic_color is 'Green_traffic_Light':
+                im = cv2.rectangle(im, (x_min, y_min), (x_max, y_max), (0,255,0), 2)  # 框的左上角，框的右下角
+                im = cv2.putText(im, traffic_color, (x_min, y_min), cv2.FONT_HERSHEY_COMPLEX, 0.5, (0,255,0),1)  # 框的左上角
+            else:
+                im = cv2.rectangle(im, (x_min, y_min), (x_max, y_max), (255,255,0), 2)  # 框的左上角，框的右下角
+                im = cv2.putText(im, traffic_color, (x_min, y_min), cv2.FONT_HERSHEY_COMPLEX, 0.5, (255,255,0),1)  # 框的左上角
+            continue
+        im = cv2.rectangle(im, (x_min, y_min), (x_max, y_max), LABEL_COLORS[label], 2)  # 框的左上角，框的右下角
+        im = cv2.putText(im, label, (x_min, y_min), cv2.FONT_HERSHEY_COMPLEX, 0.5, LABEL_COLORS[label],1)  # 框的左上角
+    
+    im = cv2.cvtColor(im, cv2.COLOR_BGR2RGB)
+    Image.fromarray(np.uint8(im))
+    
+    # show the image in main page
+    # if there are pedestrains on the road, warning and send email
+    if pedstrain_exist:
+        ret=mail()
+        if ret:
+            print("邮件发送成功")
+        else:
+            print("邮件发送失败")
+        st.error('Exists Pedestrains!!!')
+        
+    st.image(im, caption='the image you choose', width=512)
+    
+    
