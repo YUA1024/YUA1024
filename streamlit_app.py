@@ -89,7 +89,7 @@ option = st.sidebar.selectbox(
 if option == 'Introduction about this app':
     st.subheader('Introduction')
     '''
-    Our Object Detection application can identify the image you upload and display it.
+    The Object Detection application can identify the image you upload and display it.
 
     The objects it can identify include traffic light :traffic_light: , car :car: , pedestrian :walking: , biker :bicyclist: .
 
