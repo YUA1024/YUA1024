@@ -84,7 +84,7 @@ st.title('Object Detection :face_with_monocle:')
 
 option = st.sidebar.selectbox(
     'Services you are interested',
-    ('Introduction about this app', 'Choose the image you want to detect'))
+    ('Introduction about this app', 'Choose the image you want to detect','sign in'))
 
 if option == 'Introduction about this app':
     st.subheader('Introduction')
