@@ -118,12 +118,12 @@ st.title('Object Detection :face_with_monocle:')
 # define selectbox in the sidebar 
 option = st.sidebar.selectbox(
     'Services you are interested',
-    ('Introduction about this app', 'Choose the image you want to detect'))
+    ('Introduction about this app', 'Choose the image you want to detect','sign in'))
 
 if option == 'Introduction about this app':
     st.subheader('Introduction')
     '''
-    Our Object Detection application can identify the image you upload and display it.
+    The Object Detection application can identify the image you upload and display it.
 
     The objects it can identify include traffic light :traffic_light: , car :car: , pedestrian :walking: , biker :bicyclist: .
 
